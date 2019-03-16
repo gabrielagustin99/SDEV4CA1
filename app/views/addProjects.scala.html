@@ -1,0 +1,41 @@
+@(itemForm: Form[models.products.Projects],user: models.users.User)
+
+
+@import helper._
+
+@main("Add Project",user){
+    <p class="lead">Add a new Project</p>
+
+
+    @form(action=routes.HomeController.addProjectsSubmit(), 'class -> "form-horizontal", 'role -> "form") {
+        @* CSRF attack prevention *@
+        @* This token, sent by the controller, will be used to authenticate the form submission *@
+        @CSRF.formField
+
+
+            @inputText(itemForm("name"), '_label -> "Name", 'class -> "form-control")
+            <p><strong>Department</strong></p>
+            @for((value, name) <- products.Department.options) {
+                <input type="checkbox" name="catSelect[]" value="@value"  
+                    @if(itemForm("id").getValue.isPresent && itemForm("id").getValue.get != "") { 
+                        @if(products.Department.inDepartment(value.toLong, itemForm("id").getValue.get.toLong)) {
+                            checked
+                        }
+                    } 
+                /> @name </br>
+            }
+            </p>
+            
+            @inputText(itemForm("description"), '_label -> "Description", 'class -> "form-control")
+
+            @inputText(itemForm("id"), '_label -> "", 'hidden -> "hidden")
+            
+
+            <div class="actions">
+                <input type="submit" value="Add/Update item" class="btn btn-primary">
+                <a href="@routes.HomeController.projectList(0)">
+                    <button type="button" class="btn btn-warning">Cancel</button>
+                </a>
+            </div>
+    } @* end of form *@
+} @* end of main *@
