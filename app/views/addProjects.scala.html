@@ -7,7 +7,8 @@
     <p class="lead">Add a new Project</p>
 
 
-    @form(action=routes.HomeController.addProjectsSubmit(), 'class -> "form-horizontal", 'role -> "form") {
+    @form(action=routes.HomeController.addProjectsSubmit(), 'class -> "form-horizontal", 'role -> "form", 
+    'method -> "POST", 'enctype -> "multipart/form-data") {
         @* CSRF attack prevention *@
         @* This token, sent by the controller, will be used to authenticate the form submission *@
         @CSRF.formField
@@ -28,7 +29,12 @@
             
             @inputText(itemForm("description"), '_label -> "Description", 'class -> "form-control")
 
+            <label>Image Upload</label>
+            <input class="btn-sm btn-default" type="file" name="upload"> 
+
             @inputText(itemForm("id"), '_label -> "", 'hidden -> "hidden")
+
+            
             
 
             <div class="actions">

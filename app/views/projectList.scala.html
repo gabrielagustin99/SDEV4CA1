@@ -41,6 +41,10 @@
                   <td>@i.getName</td>
                   <td>@i.getDescription</td>
 
+                  <td>
+                    <a type="button" value="Read" class="btn btn-primary" href="@routes.HomeController.viewProject(i.getId())">Read</a>
+                    </td>
+
                   @if((user != null) && ("admin".equals(user.getRole()))) {
 						<td>
 							<a href="@routes.HomeController.updateItem(i.getId)" class="button-xs btn-danger">

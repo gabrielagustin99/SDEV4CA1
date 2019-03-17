@@ -21,10 +21,6 @@ public class User extends Model {
     private String email;
 
     @Constraints.Required
-    @Temporal(TemporalType.DATE)
-    private Date dateOfBirth;
-
-    @Constraints.Required
     private String name;   
     
     @Constraints.Required
@@ -53,20 +49,12 @@ public class User extends Model {
 
     }
 
-    public User(String email, String name, String role, String password) {
-        this.email = email;
-        this.name = name;
-        this.role = role;
-        this.password = password;
-    }
-
     public User(String email, String name, String role, 
-    String password,Date dateOfBirth) {
+    String password) {
         this.email = email;
         this.name = name;
         this.role = role;
         this.password = password;
-        this.dateOfBirth = dateOfBirth;
     }
 
     public String getEmail() {
@@ -91,15 +79,6 @@ public class User extends Model {
 
     public void setName(String name) {
         this.name = name;
-    }
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-    public String getDateOfBirthString() {
-        return String.format("%1$td %1$tB %1$tY", dateOfBirth);
-      }
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
     }
 
     public String getPassword() {

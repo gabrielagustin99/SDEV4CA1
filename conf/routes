@@ -7,8 +7,8 @@ GET     /                           controllers.HomeController.index
 
 GET     /projectList                     controllers.HomeController.projectList(cat:Long?=0L)
 
-
 GET     /addProjects                    controllers.HomeController.addProjects
+GET     /viewProject/:id              controllers.HomeController.viewProject(id: Long)
 GET     /updateItem/:id             controllers.HomeController.updateItem(id: Long)
 GET     /deleteItem/:id             controllers.HomeController.deleteItem(id: Long)
 
