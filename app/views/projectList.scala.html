@@ -1,4 +1,4 @@
-@(items: List[models.products.Projects],Department: List[models.products.Department],user: models.users.User)
+@(items: List[models.products.Projects],Department: List[models.products.Department],user: models.users.User,env: play.api.Environment)
 @main("Project List",user){
     <h1>[PROJECTS]</h1>
 
@@ -26,6 +26,7 @@
             <thead>
 
         <tr>
+            <th>Image</th>
             <th>ID</th>
             <th>Name</th>
             <th>Description</th>
@@ -36,7 +37,13 @@
        
             @* Loop for creating table rows from Projects data *@
             @for(i<-items) {
-               <tr>
+                <tr>
+                        @if(env.resource("public/images/productImages/" + i.getId + "thumb.jpg").isDefined) {
+                            <td><img src="/assets/images/productImages/@(i.getId + "thumb.jpg")"/></td>
+                        } else {
+                            <td><img src="/assets/images/productImages/noImage.jpg"/></td>
+    }
+
                   <td>@i.getId</td>
                   <td>@i.getName</td>
                   <td>@i.getDescription</td>

@@ -30,10 +30,12 @@ import org.imgscalr.*;
 public class HomeController extends Controller {
 
     private FormFactory formFactory;
+    private Environment e;
 
     @Inject
-    public HomeController(FormFactory f) {
+    public HomeController(FormFactory f,Environment env) {
         this.formFactory = f;
+        this.e = env;
 }
 
 public Result viewProject(Long id){
@@ -52,7 +54,7 @@ public Result viewProject(Long id){
         }else {
             itemList = Department.find.ref(cat).getItems();
         }
-        return ok(projectList.render(itemList, DepartmentList,User.getUserById(session().get("email"))));
+        return ok(projectList.render(itemList, DepartmentList,User.getUserById(session().get("email")),e));
 
      }
 
