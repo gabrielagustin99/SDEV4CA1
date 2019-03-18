@@ -13,18 +13,18 @@
 	    .midcol h3 { text-align: center; color: steelblue; }
 	    .redtext { color: red; }
 	</style>
-	<title>OFM @pagename</title>
+	<title>Swift @pagename</title>
     </head>
     <body>
 	<nav class="navbar navbar-inverse">
 	    <div class="container-fluid">
 		<div class="navbar-header">
-		    <a class="navbar-brand" href="#">WebSiteName</a>
+		    <a class="navbar-brand" href="@routes.HomeController.index()">Swift</a>
 		</div>
 		<ul class="nav navbar-nav">
             <li @if(pagename == "Home") {class="active"}><a href="@routes.HomeController.index()">Home</a></li>
 		    <li @if(pagename == "Project List") {class="active"}><a href="@routes.HomeController.projectList()">Projects</a></li>
-			
+			<li @if(pagename == "Departments") {class="active"}><a href="@routes.HomeController.userList()">Departments</a></li>
 			<li @if(pagename == "Log In") {class="active"}>
 				@if(user != null) {
 					<a href="@routes.LoginController.logout()">Log Out</a>

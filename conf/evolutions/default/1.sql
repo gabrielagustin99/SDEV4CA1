@@ -3,6 +3,13 @@
 
 # --- !Ups
 
+create table address (
+  addr                          varchar(31) not null,
+  email                         varchar(255) not null,
+  address                       varchar(255),
+  constraint pk_address primary key (email)
+);
+
 create table department (
   id                            bigint auto_increment not null,
   name                          varchar(255),
@@ -57,6 +64,8 @@ drop index if exists ix_department_projects_projects;
 
 alter table user drop constraint if exists fk_user_department_id;
 drop index if exists ix_user_department_id;
+
+drop table if exists address;
 
 drop table if exists department;
 

@@ -193,5 +193,19 @@ public Result userList(Long dep) {
     return ok(EmpDep.render(empList, empDepartmentList,User.getUserById(session().get("email")),e));
 
  }
+/*@Security.Authenticated(Secured.class)
+@Transactional
+@With(AuthAdmin.class)
+ public Result addressList(String usr) {
+    List<Address> addressList = null;
+    List<User> userList = User.findAll();
 
+    if(usr == null){
+        addressList = Address.findAll();
+    }else {
+        addressList = User.findUser.ref(usr).getAddress();
+    }
+    return ok(addressList.render(addressList, userList,User.getUserById(session().get("email")),e));
+
+ }*/
 }

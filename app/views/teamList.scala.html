@@ -1,6 +1,6 @@
-@(items: List[models.users.User],Department: List[models.products.Department],user: models.users.User,env: play.api.Environment)
-@main("Department-Employee List",user){
-    <h1>Departments and their Employees</h1>
+@(team: List[models.users.User],Projects: List[models.products.Projects],user: models.users.User,env: play.api.Environment)
+@main("Team",user){
+    <h1>Team members on this project</h1>
 
 
     @* Display successful new product message from flash, if it is set *@
@@ -9,17 +9,6 @@
 			@flash.get("success")
 		</div>
 }
-    <div class="col-sm-3">
-		<h4>Department</h4>
-	        <ul class="list-group">
-                    <a href = "@routes.HomeController.userList(0)" class="list-group-item">All Department</a>
-		        @for(c<-Department) {
-			        <a href = "@routes.HomeController.userList(c.getId())" class="list-group-item catheight">@c.getName
-                        <span class="badge">@c.getItems.size</span> 
-                    </a>
-			    }
-            </ul>
-    </div>
 
     <div class="col-sm-9">
         <table class="table table-bordered table-hover table-condensed">
@@ -35,7 +24,7 @@
 
        
             @* Loop for creating table rows from Projects data *@
-            @for(i<-items) {
+            @for(i<-team) {
                 <tr>
                         
                   <td>@i.getEmail</td>
@@ -52,4 +41,3 @@
     
     }
 </div>
- 
