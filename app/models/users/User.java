@@ -5,6 +5,7 @@ import javax.persistence.*;
 import io.ebean.*;
 import play.data.format.*;
 import play.data.validation.*;
+import models.products.*;
 
 @Entity
 
@@ -25,7 +26,9 @@ public class User extends Model {
     
     @Constraints.Required
     private String password;
-
+    
+    @ManyToOne(cascade=CascadeType.ALL)
+    private List<Department> department;
 
     private String role;
 
@@ -55,6 +58,11 @@ public class User extends Model {
         this.name = name;
         this.role = role;
         this.password = password;
+    }
+    public static final Finder<Long, User> findUser = new Finder<>(User.class);
+			    
+    public static final List<User> findAll() {
+        return User.findUser.all();
     }
 
     public String getEmail() {
@@ -88,4 +96,13 @@ public class User extends Model {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    
+    public List<Department> getDepartment() {
+        return department;
+    }
+    public void setDepartment(List <Department> Department) {
+        this.department = department;
+    }
+    
 }

@@ -180,4 +180,18 @@ public Result updateItem(Long id) {
 }
 
 
+
+public Result userList(Long dep) {
+    List<User> empList = null;
+    List<Department> empDepartmentList = Department.findAll();
+
+    if(dep ==0){
+        empList = User.findAll();
+    }else {
+        empList = Department.find.ref(dep).getEmployees();
+    }
+    return ok(EmpDep.render(empList, empDepartmentList,User.getUserById(session().get("email")),e));
+
+ }
+
 }

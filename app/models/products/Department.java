@@ -6,6 +6,7 @@ import javax.persistence.*;
 import io.ebean.*;
 import play.data.format.*;
 import play.data.validation.*;
+import models.users.*;
 
 @Entity
 public class Department extends Model {
@@ -19,13 +20,17 @@ public class Department extends Model {
    @ManyToMany(cascade=CascadeType.ALL)
    private List<Projects> items;
 
+   @OneToMany(cascade=CascadeType.ALL)
+   private List<User> employees;
+
    public  Department() {
    }
 			    
-   public  Department(Long id, String name, List<Projects> items) {
+   public  Department(Long id, String name, List<Projects> items, List<User> employees) {
       this.id = id;
       this.name = name;
       this.items = items;
+      this.employees = employees;
    }
    public Long getId() {
     return id;
@@ -50,6 +55,10 @@ public List<Projects> getItems() {
 public void setItems (List<Projects> items) {
     this.items = items;
 }
+
+public List<User> getEmployees() {
+    return employees;
+}
 public static Finder<Long,Department> find = new Finder<Long,Department>(Department.class);
 
 public static List<Department> findAll() {
@@ -69,4 +78,11 @@ public static Map<String,String> options() {
                        .eq("id", Department)
                        .findList().size() > 0;
 }
+
+public static boolean empDepartment(Long Department, Long employees) {
+    return find.query().where().eq("employees.id", employees)
+                       .eq("id", Department)
+                       .findList().size() > 0;
+}
+
 }

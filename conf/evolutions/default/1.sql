@@ -25,6 +25,7 @@ create table projects (
 create table user (
   type                          varchar(31) not null,
   email                         varchar(255) not null,
+  department_id                 bigint not null,
   name                          varchar(255),
   password                      varchar(255),
   role                          varchar(255),
@@ -42,6 +43,9 @@ create index ix_department_projects_department on department_projects (departmen
 alter table department_projects add constraint fk_department_projects_projects foreign key (projects_id) references projects (id) on delete restrict on update restrict;
 create index ix_department_projects_projects on department_projects (projects_id);
 
+alter table user add constraint fk_user_department_id foreign key (department_id) references department (id) on delete restrict on update restrict;
+create index ix_user_department_id on user (department_id);
+
 
 # --- !Downs
 
@@ -50,6 +54,9 @@ drop index if exists ix_department_projects_department;
 
 alter table department_projects drop constraint if exists fk_department_projects_projects;
 drop index if exists ix_department_projects_projects;
+
+alter table user drop constraint if exists fk_user_department_id;
+drop index if exists ix_user_department_id;
 
 drop table if exists department;
 

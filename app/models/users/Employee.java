@@ -82,9 +82,10 @@ public class Employee extends User{
     public void setCreditCard(String creditCard) {
         this.creditCard = creditCard;
     }
-    public static final Finder<Long, Employee> find = new Finder<>(Employee.class);
-			    
-    public static final List<Employee> findAll() {
-       return Employee.find.all();
+    public static final Finder<Long, Employee> findEmp = new Finder<>(Employee.class);
+    
+    
+    public static final List<Employee> findAllEmp() {
+       return Employee.findEmp.all();
     }
 }

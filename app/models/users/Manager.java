@@ -22,9 +22,9 @@ public class Manager extends User {
         super(email, name, role, password);
     }
 
-    public static final Finder<Long, Manager> find = new Finder<>(Manager.class);
+    public static final Finder<Long, Manager> findMan = new Finder<>(Manager.class);
 			    
-    public static final List<Manager> findAll() {
-       return Manager.find.all();
+    public static final List<Manager> findAllMan() {
+       return Manager.findMan.all();
     }
 }
