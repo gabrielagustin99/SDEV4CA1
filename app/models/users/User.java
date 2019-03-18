@@ -30,8 +30,8 @@ public class User extends Model {
     @ManyToOne(cascade=CascadeType.ALL)
     private List<Department> department;
 
-    @OneToOne(cascade=CascadeType.ALL)
-    private List<Address> address;
+    /*@OneToOne(cascade=CascadeType.ALL)
+    private List<Address> address;*/
 
     private String role;
 
@@ -108,10 +108,10 @@ public class User extends Model {
         this.department = department;
     }
     
-    public List<Address> getAddress() {
+    /*public List<Address> getAddress() {
         return address;
     }
     public void setAddress(List <Address> address) {
         this.address = address;
-    }
+    }*/
 }
